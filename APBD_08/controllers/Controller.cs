@@ -1,4 +1,6 @@
-﻿using APBD_08.Services;
+﻿using APBD_08.dtos;
+using APBD_08.models;
+using APBD_08.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace APBD_08.controllers;
@@ -17,10 +19,28 @@ public class Controller(IDbService dbService)
     }
 
     [HttpGet("/{id}")]
-    //[Route ("api/[controller]/{id}")]
     public async Task<IResult> GetById(int id)
     {
         var result = await _dbService.GetQuizByIdAsync(id);
         return result == null ? Results.NotFound() : Results.Ok(result);
+    }
+
+    [HttpPost("/{id}")]
+    public async Task<IResult> Save(TestDto dto)
+    {
+        if (dto == null)
+        {
+            return Results.BadRequest("Invalid data.");
+        }
+
+        try
+        {
+            await _dbService.CreatePotatoTeacherAsync(dto);
+            return Results.Ok("Quiz and Potato Teacher have been successfully created.");
+        }
+        catch (Exception ex)
+        {
+            return Results.StatusCode(500);
+        }
     }
 }

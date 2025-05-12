@@ -7,4 +7,5 @@ public interface IPotatoTeacherQuizRepository
 {
     Task<List<Quiz>> GetAllQuizzesAsync();
     Task<Quiz> GetQuizByIdAsync(int id);
+    Task CreateTestAsync(TestDto test);
 }

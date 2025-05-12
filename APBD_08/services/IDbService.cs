@@ -6,4 +6,5 @@ public interface IDbService
 {
     Task<List<QuizDto>> GetAllQuizesAsync();
     Task<QuizDto> GetQuizByIdAsync(int id);
+    Task CreatePotatoTeacherAsync(TestDto testDto);
 }
