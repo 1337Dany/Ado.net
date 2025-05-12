@@ -6,4 +6,5 @@ namespace APBD_08.repositories;
 public interface IPotatoTeacherQuizRepository
 {
     Task<List<Quiz>> GetAllQuizzesAsync();
+    Task<Quiz> GetQuizByIdAsync(int id);
 }

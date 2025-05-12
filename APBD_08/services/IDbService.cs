@@ -5,4 +5,5 @@ namespace APBD_08.Services;
 public interface IDbService
 {
     Task<List<QuizDto>> GetAllQuizesAsync();
+    Task<QuizDto> GetQuizByIdAsync(int id);
 }

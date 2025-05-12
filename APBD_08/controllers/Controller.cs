@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace APBD_08.controllers;
 
 [ApiController]
-[Route ("api/controller")]
+[Route ("api/[controller]")]
 public class Controller(IDbService dbService)
 {
     private readonly IDbService _dbService = dbService;
@@ -14,5 +14,13 @@ public class Controller(IDbService dbService)
     {
         var result = await _dbService.GetAllQuizesAsync();
         return Results.Ok(result);
+    }
+
+    [HttpGet("/{id}")]
+    //[Route ("api/[controller]/{id}")]
+    public async Task<IResult> GetById(int id)
+    {
+        var result = await _dbService.GetQuizByIdAsync(id);
+        return result == null ? Results.NotFound() : Results.Ok(result);
     }
 }

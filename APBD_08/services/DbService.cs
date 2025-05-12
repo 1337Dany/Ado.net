@@ -17,4 +17,17 @@ public class DbService(IPotatoTeacherQuizRepository repo) : IDbService
 
         return dtoList;
     }
+
+    public async Task<QuizDto> GetQuizByIdAsync(int id)
+    {
+        var quiz = await repo.GetQuizByIdAsync(id);
+
+        var dto = new QuizDto
+        {
+            id = quiz.id,
+            name = quiz.name
+        };
+
+        return await Task.FromResult(dto);
+    }
 }
