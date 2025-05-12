@@ -4,7 +4,7 @@ using APBD_08.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+var connectionString = builder.Configuration.GetConnectionString("UniConnection");
 
 builder.Services.AddTransient<IPotatoTeacherQuizRepository, PotatoTeacherQuizRepository>(repo => new PotatoTeacherQuizRepository(connectionString));
 builder.Services.AddTransient<IDbService, DbService>();
